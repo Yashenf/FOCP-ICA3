@@ -67,15 +67,19 @@ void searchAccount(){
     string userEnterdAccNum;
     cout << "Enter NIC Number : ";
     cin >> userEnterdAccNum;
-
+    bool isFound = false;
     for(int i=0; i<5; i++){
         if(nics[i] == userEnterdAccNum){
             cout << "Account Number \t Customer Name \t NICs \t \t Balance" << endl;
-            cout << nics[i] << "\t" << cusNames[i] << "\t" << nics[i] << "\t" << balance[i] << endl;
-            return;
+            cout << accNums[i] << "\t" << cusNames[i] << "\t" << nics[i] << "\t" << balance[i] << endl;
+            isFound = true;
+            //return;
         }
     }
-    cout << "Sorry, we don't have any account for this NIC Number." << endl;  
+
+    if(!isFound){ 
+        cout << "Sorry, we don't have any account for this NIC Number." << endl; 
+    } 
 }
 
 void depositAmount(){
@@ -112,7 +116,7 @@ void withdrawAmount(){
             cout << "Enter the ammount that you want to withdraw : " << endl;
             cin >> withdrawalAmount;
 
-            if(balance[i] <= withdrawalAmount || balance[i] < 10000){
+            if(balance[i] <= withdrawalAmount && balance[i] < 10000){
                 cout << "The balance is not sufficient to withdraw";
                 return;
             }
